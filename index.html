@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🛡️ CyberGuard - Phishing & Spam Detection</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Background Elements -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+    
+    <div class="cyber-lines">
+        <div class="cyber-line"></div>
+        <div class="cyber-line"></div>
+        <div class="cyber-line"></div>
+        <div class="cyber-line"></div>
+        <div class="cyber-line"></div>
+        <div class="cyber-line"></div>
+        <div class="cyber-line"></div>
+        <div class="cyber-line"></div>
+    </div>
+    
+    <div class="container">
+        <!-- Header with cyber theme -->
+        <header class="cyber-header">
+            <div class="logo">
+                <i class="fas fa-shield-alt"></i>
+                <h1>CyberGuard</h1>
+            </div>
+            <div class="subtitle">AI-Powered Threat Detection System</div>
+        </header>
+
+        <!-- Main content area -->
+        <main class="main-content">
+            <!-- Input section -->
+            <section class="input-section">
+                <div class="input-container">
+                    <h2><i class="fas fa-search"></i> Threat Analysis</h2>
+                    <p class="input-description">Enter text/URL or upload a screenshot to analyze for threats</p>
+                    
+                    <!-- Tab navigation -->
+                    <div class="tab-navigation">
+                        <button class="tab-button active" data-tab="text-input">
+                            <i class="fas fa-keyboard"></i>
+                            Text Input
+                        </button>
+                        <button class="tab-button" data-tab="screenshot-upload">
+                            <i class="fas fa-camera"></i>
+                            Screenshot Upload
+                        </button>
+                        <button class="tab-button" data-tab="ai-assistant">
+                            <i class="fas fa-robot"></i>
+                            AI Assistant
+                        </button>
+                    </div>
+                    
+                    <!-- Text input tab -->
+                    <div class="tab-content active" id="text-input">
+                        <div class="input-group">
+                            <textarea 
+                                id="userInput" 
+                                placeholder="Enter URL or text to analyze...&#10;&#10;Examples:&#10;• https://suspicious-site.com&#10;• Win a free laptop by replying YES&#10;• Click here: http://bank-login-now.com"
+                                rows="6"
+                            ></textarea>
+                            <button id="analyzeBtn" class="cyber-button">
+                                <i class="fas fa-rocket"></i>
+                                <span>Analyze Threat</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Screenshot upload tab -->
+                    <div class="tab-content" id="screenshot-upload">
+                        <div class="upload-container">
+                            <div class="upload-area" id="uploadArea">
+                                <div class="upload-content">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <h3>Upload Screenshot to Scan</h3>
+                                    <p>Drag & drop an image or click to browse</p>
+                                    <p class="file-types">Supported: PNG, JPG, JPEG, GIF, BMP, TIFF</p>
+                                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                                    <button class="cyber-button upload-btn">
+                                        <i class="fas fa-folder-open"></i>
+                                        Choose File
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Image preview -->
+                            <div class="image-preview hidden" id="imagePreview">
+                                <h3><i class="fas fa-image"></i> Image Preview</h3>
+                                <div class="preview-container">
+                                    <img id="previewImage" src="" alt="Uploaded image">
+                                </div>
+                                <button id="analyzeScreenshotBtn" class="cyber-button">
+                                    <i class="fas fa-search"></i>
+                                    Analyze Screenshot
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- AI Assistant tab -->
+                    <div class="tab-content" id="ai-assistant">
+                        <div class="chat-container">
+                            <div class="chat-header">
+                                <h3><i class="fas fa-robot"></i> CyberGuard AI Assistant</h3>
+                                <p>Ask me anything about cybersecurity, phishing, or get help understanding your analysis results!</p>
+                            </div>
+                            
+                            <div class="chat-messages" id="chatMessages">
+                                <!-- Messages will be added here dynamically -->
+                            </div>
+                            
+                            <div class="chat-input-area">
+                                <div class="chat-suggestions" id="chatSuggestions">
+                                    <button class="suggestion-btn" data-suggestion="What is phishing?">
+                                        <i class="fas fa-question-circle"></i>
+                                        What is phishing?
+                                    </button>
+                                    <button class="suggestion-btn" data-suggestion="Security tips">
+                                        <i class="fas fa-shield-alt"></i>
+                                        Security tips
+                                    </button>
+                                    <button class="suggestion-btn" data-suggestion="How to stay safe online">
+                                        <i class="fas fa-lock"></i>
+                                        How to stay safe
+                                    </button>
+                                    <button class="suggestion-btn" data-suggestion="Help me understand results">
+                                        <i class="fas fa-chart-bar"></i>
+                                        Understand results
+                                    </button>
+                                </div>
+                                
+                                <div class="chat-input-container">
+                                    <input type="text" id="chatInput" placeholder="Ask me anything about cybersecurity..." maxlength="500">
+                                    <button id="sendChatBtn" class="cyber-button">
+                                        <i class="fas fa-paper-plane"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results section -->
+            <section id="resultsSection" class="results-section hidden">
+                <div class="results-container">
+                    <!-- Analysis type indicator -->
+                    <div class="analysis-type">
+                        <div class="type-badge" id="analysisType">
+                            <i class="fas fa-globe"></i>
+                            <span>URL Analysis</span>
+                        </div>
+                    </div>
+
+                    <!-- Main result card -->
+                    <div class="result-card">
+                        <div class="result-header">
+                            <div class="prediction-badge" id="predictionBadge">
+                                <i class="fas fa-check-circle"></i>
+                                <span>Safe</span>
+                            </div>
+                            <div class="risk-meter">
+                                <div class="risk-label">Risk Level</div>
+                                <div class="risk-circle">
+                                    <svg class="risk-svg" viewBox="0 0 120 120">
+                                        <circle class="risk-bg" cx="60" cy="60" r="50"></circle>
+                                        <circle class="risk-progress" cx="60" cy="60" r="50" id="riskProgress"></circle>
+                                    </svg>
+                                    <div class="risk-score" id="riskScore">0</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Badge system -->
+                        <div class="badge-container">
+                            <div class="badge" id="securityBadge">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Cyber Guardian</span>
+                            </div>
+                        </div>
+
+                        <!-- Suggested action -->
+                        <div class="suggested-action" id="suggestedAction">
+                            <i class="fas fa-lightbulb"></i>
+                            <span>Safe to proceed</span>
+                        </div>
+
+                        <!-- Extracted text (for screenshots) -->
+                        <div class="extracted-text hidden" id="extractedTextSection">
+                            <h3><i class="fas fa-file-text"></i> Extracted Text</h3>
+                            <div class="text-content" id="extractedTextContent">
+                                <!-- Extracted text will be displayed here -->
+                            </div>
+                        </div>
+
+                        <!-- Detailed breakdown -->
+                        <div class="breakdown" id="breakdown">
+                            <h3><i class="fas fa-chart-bar"></i> Analysis Breakdown</h3>
+                            <div class="breakdown-content" id="breakdownContent">
+                                <!-- Dynamic content will be inserted here -->
+                            </div>
+                        </div>
+
+                        <!-- New Analysis Button -->
+                        <div class="new-analysis-section">
+                            <button id="newAnalysisBtn" class="cyber-button new-analysis-btn">
+                                <i class="fas fa-plus-circle"></i>
+                                <span>New Analysis</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Loading section -->
+            <section id="loadingSection" class="loading-section hidden">
+                <div class="loading-container">
+                    <div class="cyber-spinner">
+                        <div class="spinner-ring"></div>
+                        <div class="spinner-ring"></div>
+                        <div class="spinner-ring"></div>
+                    </div>
+                    <h3 id="loadingText">Analyzing Threat...</h3>
+                    <p id="loadingSubtext">Running AI models to detect malicious patterns</p>
+                </div>
+            </section>
+
+            <!-- Error section -->
+            <section id="errorSection" class="error-section hidden">
+                <div class="error-container">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>Analysis Failed</h3>
+                    <p id="errorMessage">An error occurred during analysis</p>
+                    <button class="cyber-button" onclick="hideError()">
+                        <i class="fas fa-redo"></i>
+                        Try Again
+                    </button>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="cyber-footer">
+            <div class="footer-content">
+                <p><i class="fas fa-code"></i> Powered by AI & Cybersecurity</p>
+                <p><i class="fas fa-graduation-cap"></i> Promoting Digital Safety Awareness</p>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Global variables
+        let isAnalyzing = false;
+        let currentFile = null;
+        let currentAnalysisResult = null;
+        let chatHistory = [];
+
+        // DOM elements
+        const userInput = document.getElementById('userInput');
+        const analyzeBtn = document.getElementById('analyzeBtn');
+        const fileInput = document.getElementById('fileInput');
+        const uploadArea = document.getElementById('uploadArea');
+        const imagePreview = document.getElementById('imagePreview');
+        const previewImage = document.getElementById('previewImage');
+        const analyzeScreenshotBtn = document.getElementById('analyzeScreenshotBtn');
+        const resultsSection = document.getElementById('resultsSection');
+        const loadingSection = document.getElementById('loadingSection');
+        const errorSection = document.getElementById('errorSection');
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Chat elements
+        const chatInput = document.getElementById('chatInput');
+        const sendChatBtn = document.getElementById('sendChatBtn');
+        const chatMessages = document.getElementById('chatMessages');
+        const chatSuggestions = document.querySelectorAll('.suggestion-btn');
+
+        // Event listeners
+        analyzeBtn.addEventListener('click', analyzeInput);
+        userInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter' && e.ctrlKey) {
+                analyzeInput();
+            }
+        });
+
+        // Chat event listeners
+        sendChatBtn.addEventListener('click', sendChatMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+
+        // Chat suggestion buttons
+        chatSuggestions.forEach(btn => {
+            btn.addEventListener('click', function() {
+                const suggestion = this.getAttribute('data-suggestion');
+                chatInput.value = suggestion;
+                sendChatMessage();
+            });
+        });
+
+        // Tab navigation
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabName = button.getAttribute('data-tab');
+                
+                // Update active tab button
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                
+                // Update active tab content
+                tabContents.forEach(content => content.classList.remove('active'));
+                document.getElementById(tabName).classList.add('active');
+                
+                // Hide results when switching tabs
+                hideResults();
+                hideError();
+                
+                // Initialize chat if switching to AI Assistant tab
+                if (tabName === 'ai-assistant' && chatHistory.length === 0) {
+                    initializeChat();
+                }
+            });
+        });
+
+        // File upload handling
+        uploadArea.addEventListener('click', () => fileInput.click());
+        uploadArea.addEventListener('dragover', handleDragOver);
+        uploadArea.addEventListener('drop', handleDrop);
+        fileInput.addEventListener('change', handleFileSelect);
+        analyzeScreenshotBtn.addEventListener('click', analyzeScreenshot);
+
+        function handleDragOver(e) {
+            e.preventDefault();
+            uploadArea.classList.add('drag-over');
+        }
+
+        function handleDrop(e) {
+            e.preventDefault();
+            uploadArea.classList.remove('drag-over');
+            
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                handleFile(files[0]);
+            }
+        }
+
+        function handleFileSelect(e) {
+            const file = e.target.files[0];
+            if (file) {
+                handleFile(file);
+            }
+        }
+
+        function handleFile(file) {
+            // Validate file type
+            const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif', 'image/bmp', 'image/tiff'];
+            if (!allowedTypes.includes(file.type)) {
+                showError('Invalid file type. Please upload an image file.');
+                return;
+            }
+
+            // Validate file size (16MB max)
+            if (file.size > 16 * 1024 * 1024) {
+                showError('File too large. Please upload an image smaller than 16MB.');
+                return;
+            }
+
+            currentFile = file;
+            
+            // Show preview
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewImage.src = e.target.result;
+                uploadArea.classList.add('hidden');
+                imagePreview.classList.remove('hidden');
+            };
+            reader.readAsDataURL(file);
+        }
+
+        // Main analysis function
+        async function analyzeInput() {
+            const input = userInput.value.trim();
+            
+            if (!input) {
+                showError('Please enter some text or URL to analyze');
+                return;
+            }
+
+            if (isAnalyzing) return;
+
+            isAnalyzing = true;
+            showLoading('Analyzing Text...', 'Running AI models to detect malicious patterns');
+
+            try {
+                const response = await fetch('/analyze', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ input: input })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    displayResults(data);
+                } else {
+                    showError(data.error || 'Analysis failed');
+                }
+            } catch (error) {
+                showError('Network error. Please check your connection.');
+            } finally {
+                isAnalyzing = false;
+                hideLoading();
+            }
+        }
+
+        // Screenshot analysis function
+        async function analyzeScreenshot() {
+            if (!currentFile) {
+                showError('Please select an image file first');
+                return;
+            }
+
+            if (isAnalyzing) return;
+
+            isAnalyzing = true;
+            showLoading('Processing Screenshot...', 'Extracting text and analyzing for threats');
+
+            try {
+                const formData = new FormData();
+                formData.append('file', currentFile);
+
+                const response = await fetch('/analyze-screenshot', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    displayScreenshotResults(data);
+                } else {
+                    showError(data.error || 'Screenshot analysis failed');
+                }
+            } catch (error) {
+                showError('Network error. Please check your connection.');
+            } finally {
+                isAnalyzing = false;
+                hideLoading();
+            }
+        }
+
+        // Display results
+        function displayResults(data) {
+            // Store current analysis result for AI assistant
+            currentAnalysisResult = data;
+            
+            // Hide extracted text section for text input
+            document.getElementById('extractedTextSection').classList.add('hidden');
+            
+            // Update analysis type
+            updateAnalysisType(data.analysis_type);
+            
+            // Update prediction badge
+            updatePredictionBadge(data.final_prediction);
+            
+            // Update risk score with animation
+            animateRiskScore(data.combined_risk);
+            
+            // Update security badge
+            updateSecurityBadge(data.badge, data.badge_class);
+            
+            // Update suggested action
+            updateSuggestedAction(data.suggested_action);
+            
+            // Update breakdown
+            updateBreakdown(data);
+            
+            // Show results
+            showResults();
+        }
+
+        // Display screenshot results
+        function displayScreenshotResults(data) {
+            // Store current analysis result for AI assistant
+            currentAnalysisResult = data;
+            
+            // Show extracted text section
+            const extractedTextSection = document.getElementById('extractedTextSection');
+            const extractedTextContent = document.getElementById('extractedTextContent');
+            
+            extractedTextSection.classList.remove('hidden');
+            extractedTextContent.textContent = data.extracted_text || 'No text extracted';
+            
+            // Update analysis type
+            updateAnalysisType(data.analysis_type);
+            
+            // Update prediction badge
+            updatePredictionBadge(data.final_prediction);
+            
+            // Update risk score with animation
+            animateRiskScore(data.combined_risk);
+            
+            // Update security badge
+            updateSecurityBadge(data.badge, data.badge_class);
+            
+            // Update suggested action
+            updateSuggestedAction(data.suggested_action);
+            
+            // Update breakdown
+            updateBreakdown(data);
+            
+            // Show results
+            showResults();
+        }
+
+        // Update analysis type indicator
+        function updateAnalysisType(types) {
+            const typeElement = document.getElementById('analysisType');
+            const icon = typeElement.querySelector('i');
+            const text = typeElement.querySelector('span');
+            
+            if (types.includes('URL') && types.includes('Text')) {
+                icon.className = 'fas fa-link';
+                text.textContent = 'URL + Text Analysis';
+            } else if (types.includes('URL')) {
+                icon.className = 'fas fa-globe';
+                text.textContent = 'URL Analysis';
+            } else {
+                icon.className = 'fas fa-comment';
+                text.textContent = 'Text Analysis';
+            }
+        }
+
+        // Update prediction badge
+        function updatePredictionBadge(prediction) {
+            const badge = document.getElementById('predictionBadge');
+            const icon = badge.querySelector('i');
+            const text = badge.querySelector('span');
+            
+            badge.className = 'prediction-badge';
+            
+            switch (prediction.toLowerCase()) {
+                case 'safe':
+                    badge.classList.add('safe');
+                    icon.className = 'fas fa-check-circle';
+                    text.textContent = 'Safe';
+                    break;
+                case 'phishing':
+                    badge.classList.add('danger');
+                    icon.className = 'fas fa-exclamation-triangle';
+                    text.textContent = 'Phishing';
+                    break;
+                case 'spam':
+                    badge.classList.add('warning');
+                    icon.className = 'fas fa-ban';
+                    text.textContent = 'Spam';
+                    break;
+                case 'suspicious':
+                    badge.classList.add('warning');
+                    icon.className = 'fas fa-question-circle';
+                    text.textContent = 'Suspicious';
+                    break;
+            }
+        }
+
+        // Animate risk score
+        function animateRiskScore(score) {
+            const progressCircle = document.getElementById('riskProgress');
+            const scoreElement = document.getElementById('riskScore');
+            
+            // Calculate stroke dasharray
+            const circumference = 2 * Math.PI * 50;
+            const progress = (score / 100) * circumference;
+            
+            // Animate the progress
+            progressCircle.style.strokeDasharray = `${circumference} ${circumference}`;
+            progressCircle.style.strokeDashoffset = circumference;
+            
+            // Animate score number
+            let currentScore = 0;
+            const increment = score / 50;
+            const timer = setInterval(() => {
+                currentScore += increment;
+                if (currentScore >= score) {
+                    currentScore = score;
+                    clearInterval(timer);
+                }
+                scoreElement.textContent = Math.round(currentScore);
+            }, 20);
+            
+            // Animate circle
+            setTimeout(() => {
+                progressCircle.style.strokeDashoffset = circumference - progress;
+            }, 100);
+            
+            // Update color based on score
+            setTimeout(() => {
+                if (score < 30) {
+                    progressCircle.style.stroke = '#00ff88';
+                } else if (score < 60) {
+                    progressCircle.style.stroke = '#ffaa00';
+                } else {
+                    progressCircle.style.stroke = '#ff4444';
+                }
+            }, 600);
+        }
+
+        // Update security badge
+        function updateSecurityBadge(badge, badgeClass) {
+            const badgeElement = document.getElementById('securityBadge');
+            const icon = badgeElement.querySelector('i');
+            const text = badgeElement.querySelector('span');
+            
+            badgeElement.className = `badge ${badgeClass}`;
+            text.textContent = badge;
+            
+            // Update icon based on badge class
+            switch (badgeClass) {
+                case 'excellent':
+                    icon.className = 'fas fa-shield-alt';
+                    break;
+                case 'good':
+                    icon.className = 'fas fa-lock';
+                    break;
+                case 'warning':
+                    icon.className = 'fas fa-exclamation-triangle';
+                    break;
+                case 'danger':
+                    icon.className = 'fas fa-radiation';
+                    break;
+                case 'critical':
+                    icon.className = 'fas fa-skull-crossbones';
+                    break;
+            }
+        }
+
+        // Update suggested action
+        function updateSuggestedAction(action) {
+            const actionElement = document.getElementById('suggestedAction');
+            const text = actionElement.querySelector('span');
+            text.textContent = action;
+        }
+
+        // Update breakdown
+        function updateBreakdown(data) {
+            const breakdownContent = document.getElementById('breakdownContent');
+            let html = '';
+            
+            if (data.analysis_type.includes('URL') && data.analysis_type.includes('Text')) {
+                html = `
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">
+                            <i class="fas fa-globe"></i>
+                            URL Analysis
+                        </div>
+                        <div class="breakdown-value ${data.predictions.url ? 'danger' : 'safe'}">
+                            ${data.predictions.url ? 'Phishing Detected' : 'Safe URL'}
+                        </div>
+                        <div class="breakdown-score">Risk: ${data.risk_scores.url}%</div>
+                    </div>
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">
+                            <i class="fas fa-comment"></i>
+                            Text Analysis
+                        </div>
+                        <div class="breakdown-value ${data.predictions.text ? 'danger' : 'safe'}">
+                            ${data.predictions.text ? 'Spam Detected' : 'Safe Text'}
+                        </div>
+                        <div class="breakdown-score">Risk: ${data.risk_scores.text}%</div>
+                    </div>
+                `;
+            } else if (data.analysis_type.includes('URL')) {
+                html = `
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">
+                            <i class="fas fa-globe"></i>
+                            URL Analysis
+                        </div>
+                        <div class="breakdown-value ${data.predictions.url ? 'danger' : 'safe'}">
+                            ${data.predictions.url ? 'Phishing Detected' : 'Safe URL'}
+                        </div>
+                        <div class="breakdown-score">Risk: ${data.risk_scores.url}%</div>
+                    </div>
+                `;
+            } else {
+                html = `
+                    <div class="breakdown-item">
+                        <div class="breakdown-label">
+                            <i class="fas fa-comment"></i>
+                            Text Analysis
+                        </div>
+                        <div class="breakdown-value ${data.predictions.text ? 'danger' : 'safe'}">
+                            ${data.predictions.text ? 'Spam Detected' : 'Safe Text'}
+                        </div>
+                        <div class="breakdown-score">Risk: ${data.risk_scores.text}%</div>
+                    </div>
+                `;
+            }
+            
+            breakdownContent.innerHTML = html;
+        }
+
+        // Show/hide functions
+        function showLoading(title = 'Analyzing Threat...', subtitle = 'Running AI models to detect malicious patterns') {
+            document.getElementById('loadingText').textContent = title;
+            document.getElementById('loadingSubtext').textContent = subtitle;
+            loadingSection.classList.remove('hidden');
+        }
+
+        function hideLoading() {
+            loadingSection.classList.add('hidden');
+        }
+
+        function showResults() {
+            resultsSection.classList.remove('hidden');
+        }
+
+        function hideResults() {
+            resultsSection.classList.add('hidden');
+        }
+
+        function showError(message) {
+            document.getElementById('errorMessage').textContent = message;
+            errorSection.classList.remove('hidden');
+        }
+
+        function hideError() {
+            errorSection.classList.add('hidden');
+        }
+
+        // New Analysis Button
+        document.getElementById('newAnalysisBtn').addEventListener('click', function() {
+            // Clear input fields
+            userInput.value = '';
+            fileInput.value = '';
+            
+            // Reset upload area
+            uploadArea.classList.remove('hidden');
+            imagePreview.classList.add('hidden');
+            previewImage.src = '';
+            currentFile = null;
+            
+            // Remove drag-over class if present
+            uploadArea.classList.remove('drag-over');
+
+            // Hide results and error
+            hideResults();
+            hideError();
+            
+            // Switch to text input tab
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            document.querySelector('[data-tab="text-input"]').classList.add('active');
+            
+            tabContents.forEach(content => content.classList.remove('active'));
+            document.getElementById('text-input').classList.add('active');
+        });
+
+        // Chat functions
+        function initializeChat() {
+            // Add welcome message
+            addChatMessage('assistant', "🤖 **Hello! I'm your CyberGuard AI Assistant.**\n\nI'm here to help you stay safe online! You can ask me about:\n\n• **Phishing** - How to spot fake emails and websites\n• **Spam** - Identifying unwanted messages\n• **Security tips** - Best practices for staying safe\n• **Analysis results** - Understanding what I found\n\nJust type your question or use the quick suggestions below!", new Date());
+        }
+
+        function sendChatMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Add user message to chat
+            addChatMessage('user', message, new Date());
+            chatInput.value = '';
+
+            // Show typing indicator
+            showTypingIndicator();
+
+            // Send to AI assistant
+            fetch('/chat', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: message,
+                    analysis_result: currentAnalysisResult,
+                    context: 'chat'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                hideTypingIndicator();
+                
+                if (data.error) {
+                    addChatMessage('assistant', `❌ **Error:** ${data.error}`, new Date());
+                } else {
+                    addChatMessage('assistant', data.message, new Date(data.timestamp));
+                    
+                    // Update suggestions if provided
+                    if (data.suggestions && data.suggestions.length > 0) {
+                        updateChatSuggestions(data.suggestions);
+                    }
+                }
+            })
+            .catch(error => {
+                hideTypingIndicator();
+                addChatMessage('assistant', '❌ **Network Error:** Unable to connect to AI assistant. Please try again.', new Date());
+            });
+        }
+
+        function addChatMessage(sender, message, timestamp) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `chat-message ${sender}`;
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'message-bubble';
+            bubble.innerHTML = message.replace(/\n/g, '<br>');
+            
+            const timeDiv = document.createElement('div');
+            timeDiv.className = 'message-timestamp';
+            timeDiv.textContent = timestamp.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            
+            bubble.appendChild(timeDiv);
+            messageDiv.appendChild(bubble);
+            chatMessages.appendChild(messageDiv);
+            
+            // Scroll to bottom
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Store in history
+            chatHistory.push({
+                sender: sender,
+                message: message,
+                timestamp: timestamp
+            });
+        }
+
+        function showTypingIndicator() {
+            const typingDiv = document.createElement('div');
+            typingDiv.className = 'chat-message assistant';
+            typingDiv.id = 'typing-indicator';
+            
+            const bubble = document.createElement('div');
+            bubble.className = 'typing-indicator';
+            bubble.innerHTML = `
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+                <div class="typing-dot"></div>
+            `;
+            
+            typingDiv.appendChild(bubble);
+            chatMessages.appendChild(typingDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+        }
+
+        function hideTypingIndicator() {
+            const typingIndicator = document.getElementById('typing-indicator');
+            if (typingIndicator) {
+                typingIndicator.remove();
+            }
+        }
+
+        function updateChatSuggestions(suggestions) {
+            const suggestionsContainer = document.getElementById('chatSuggestions');
+            suggestionsContainer.innerHTML = '';
+            
+            suggestions.forEach(suggestion => {
+                const btn = document.createElement('button');
+                btn.className = 'suggestion-btn';
+                btn.setAttribute('data-suggestion', suggestion);
+                btn.textContent = suggestion;
+                btn.addEventListener('click', function() {
+                    chatInput.value = suggestion;
+                    sendChatMessage();
+                });
+                suggestionsContainer.appendChild(btn);
+            });
+        }
+
+        // Initialize app
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add some initial animations
+            setTimeout(() => {
+                document.querySelector('.cyber-header').classList.add('loaded');
+            }, 100);
+        });
+    </script>
+</body>
+</html> 
